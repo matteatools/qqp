@@ -846,6 +846,8 @@
             color: white;
             font-weight: 900;
             letter-spacing: 2px;
+            text-align: center;
+            line-height: 1.2;
             margin-top: 10px;
             animation: slideUp 0.3s ease-out forwards;
         }
@@ -891,6 +893,8 @@
             color: white;
             font-weight: 900;
             letter-spacing: 4px;
+            text-align: center;
+            line-height: 1.2;
             text-shadow: 0 0 20px var(--accent), 0 0 40px var(--accent);
             transform: scale(0.5);
             opacity: 0;
@@ -1252,7 +1256,7 @@
             let exp = handScore === 0 ? 'N' : (handScore >= 5000 ? 'C' : 'B');
             if (handScore >= 9000) exp = 'G';
             setCharImg(img, players[t].charId, exp);
-            nameEl.innerText = `${players[t].name} のターン！`;
+            nameEl.innerHTML = `${players[t].name}<br>のターン！`;
             nameEl.style.textShadow = players[t].isCPU ? '0 0 15px #f87171' : '0 0 15px var(--accent)';
 
             overlay.style.display = 'flex';
@@ -1278,7 +1282,7 @@
 
             if (round === 1) {
                 // ラウンド1: 相手キャラ全員表示
-                textEl.innerText = 'ラウンド１ スタート！';
+                textEl.innerHTML = 'ラウンド１<br>スタート！';
                 textEl.style.color = '#fcd34d'; // ゴールドっぽく
 
                 // CPUプレイヤーのキャラIDを取得 (players[1]〜[3])
@@ -1292,7 +1296,7 @@
                 displayDuration = 2500;
             } else {
                 // ラウンド2以降: 文字のみ
-                textEl.innerText = `ラウンド${round} スタート！`;
+                textEl.innerHTML = `ラウンド${round}<br>スタート！`;
                 textEl.style.color = '#ffffff';
                 displayDuration = 1200;
             }
