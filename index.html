@@ -578,10 +578,10 @@
         .char-select-title {
             color: white;
             font-weight: bold;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             margin-bottom: 10px;
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
 
         .char-select-grid {
@@ -638,6 +638,24 @@
         .char-select-item.selected .char-select-name {
             color: var(--accent);
             text-shadow: var(--text-neon);
+        }
+
+        .char-select-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--accent);
+            color: #0f172a;
+            font-size: 0.7rem;
+            font-weight: 900;
+            padding: 2px 6px;
+            border-radius: 10px;
+            display: none;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .char-select-item.selected .char-select-badge {
+            display: block;
         }
 
         .title-buttons {
@@ -965,10 +983,13 @@
         <div class="title-sub">九九のポーカー</div>
 
         <div class="char-select-container">
-            <div class="char-select-title">キャラクターを選択</div>
+            <div class="char-select-title">対戦メンバーを4人選んでください（1人目があなた）</div>
             <div class="char-select-grid" id="char-select-grid">
                 <!-- JSで動的に生成 -->
             </div>
+            <button onclick="selectRandomChars()"
+                style="margin-top: 10px; padding: 8px 16px; font-size: 0.9rem; background: #475569; width: auto;">🎲
+                おまかせ</button>
         </div>
 
         <div class="title-buttons">
@@ -1150,6 +1171,89 @@
 
                 <h4>進行</h4>
                 <p style="margin-top:5px;">1ラウンドにつき各プレイヤーは2回アクション（捨てる＆場から補充、またはパス）を行います。<br>全4ラウンドの合計スコアで勝敗を決めます。</p>
+
+                <h4>🤖 キャラクターの特徴</h4>
+                <ul style="margin-top:5px; margin-bottom:5px; list-style:none; padding-left:0; font-size:0.8rem;">
+                    <li
+                        style="display:flex; align-items:center; gap:8px; margin-bottom:6px; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 6px;">
+                        <img src="01/01Q.png" onerror="this.src='01/01A.png'"
+                            style="width:28px; height:28px; border-radius:4px; object-fit:cover; border:1px solid var(--accent)">
+                        <div style="flex:1"><strong style="color:var(--accent)">01 カエデ:</strong> 真面目。小さい役でも着実に集めていく。
+                        </div>
+                    </li>
+                    <li
+                        style="display:flex; align-items:center; gap:8px; margin-bottom:6px; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 6px;">
+                        <img src="02/02Q.png" onerror="this.src='02/02A.png'"
+                            style="width:28px; height:28px; border-radius:4px; object-fit:cover; border:1px solid var(--accent)">
+                        <div style="flex:1"><strong style="color:var(--accent)">02 スノウ:</strong> 積極的。複数段を積極的に狙っていく。
+                        </div>
+                    </li>
+                    <li
+                        style="display:flex; align-items:center; gap:8px; margin-bottom:6px; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 6px;">
+                        <img src="03/03Q.png" onerror="this.src='03/03A.png'"
+                            style="width:28px; height:28px; border-radius:4px; object-fit:cover; border:1px solid var(--accent)">
+                        <div style="flex:1"><strong style="color:var(--accent)">03 ピヨン:</strong> 破天荒。常に9000点越えを目指す。
+                        </div>
+                    </li>
+                    <li
+                        style="display:flex; align-items:center; gap:8px; margin-bottom:6px; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 6px;">
+                        <img src="04/04Q.png" onerror="this.src='04/04A.png'"
+                            style="width:28px; height:28px; border-radius:4px; object-fit:cover; border:1px solid var(--accent)">
+                        <div style="flex:1"><strong style="color:var(--accent)">04 ノエル:</strong> 安全第一。2つの段で3カードを目指す。
+                        </div>
+                    </li>
+                    <li
+                        style="display:flex; align-items:center; gap:8px; margin-bottom:6px; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 6px;">
+                        <img src="05/05Q.png" onerror="this.src='05/05A.png'"
+                            style="width:28px; height:28px; border-radius:4px; object-fit:cover; border:1px solid var(--accent)">
+                        <div style="flex:1"><strong style="color:var(--accent)">05 カワエ:</strong> 柔軟。4カード中心で点数を稼ぐ。</div>
+                    </li>
+                    <li
+                        style="display:flex; align-items:center; gap:8px; margin-bottom:6px; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 6px;">
+                        <img src="06/06Q.png" onerror="this.src='06/06A.png'"
+                            style="width:28px; height:28px; border-radius:4px; object-fit:cover; border:1px solid var(--accent)">
+                        <div style="flex:1"><strong style="color:var(--accent)">06 ラビィ:</strong> こだわり。3・6・9の倍数が好き。</div>
+                    </li>
+                    <li
+                        style="display:flex; align-items:center; gap:8px; margin-bottom:6px; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 6px;">
+                        <img src="07/07Q.png" onerror="this.src='07/07A.png'"
+                            style="width:28px; height:28px; border-radius:4px; object-fit:cover; border:1px solid var(--accent)">
+                        <div style="flex:1"><strong style="color:var(--accent)">07 アオン:</strong> 慎重。1枚しかカードは捨てない。</div>
+                    </li>
+                    <li
+                        style="display:flex; align-items:center; gap:8px; margin-bottom:6px; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 6px;">
+                        <img src="08/08Q.png" onerror="this.src='08/08A.png'"
+                            style="width:28px; height:28px; border-radius:4px; object-fit:cover; border:1px solid var(--accent)">
+                        <div style="flex:1"><strong style="color:var(--accent)">08 ワニタ:</strong> 理論派。確立を考えてカードを選ぶ。</div>
+                    </li>
+                    <li
+                        style="display:flex; align-items:center; gap:8px; margin-bottom:6px; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 6px;">
+                        <img src="09/09Q.png" onerror="this.src='09/09A.png'"
+                            style="width:28px; height:28px; border-radius:4px; object-fit:cover; border:1px solid var(--accent)">
+                        <div style="flex:1"><strong style="color:var(--accent)">09 パンク:</strong> 前向き。パスは嫌い。いい役を狙い続ける。
+                        </div>
+                    </li>
+                    <li
+                        style="display:flex; align-items:center; gap:8px; margin-bottom:6px; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 6px;">
+                        <img src="10/10Q.png" onerror="this.src='10/10A.png'"
+                            style="width:28px; height:28px; border-radius:4px; object-fit:cover; border:1px solid var(--accent)">
+                        <div style="flex:1"><strong style="color:var(--accent)">10 ミケン:</strong> 奇策。場のカードを使い揃えようとする。
+                        </div>
+                    </li>
+                    <li
+                        style="display:flex; align-items:center; gap:8px; margin-bottom:6px; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 6px;">
+                        <img src="11/11Q.png" onerror="this.src='11/11A.png'"
+                            style="width:28px; height:28px; border-radius:4px; object-fit:cover; border:1px solid var(--accent)">
+                        <div style="flex:1"><strong style="color:var(--accent)">11 ハムコ:</strong> 我が道。自分の信じた組み合わせを求める。
+                        </div>
+                    </li>
+                    <li
+                        style="display:flex; align-items:center; gap:8px; margin-bottom:6px; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 6px;">
+                        <img src="12/12Q.png" onerror="this.src='12/12A.png'"
+                            style="width:28px; height:28px; border-radius:4px; object-fit:cover; border:1px solid var(--accent)">
+                        <div style="flex:1"><strong style="color:var(--accent)">12 プリス:</strong> ロマン。5カードが最優先。</div>
+                    </li>
+                </ul>
             </div>
             <button onclick="hideRuleModal()"
                 style="background:#475569; color:white; padding:12px 0; width:80%; box-shadow:none;">閉じる</button>
@@ -1199,7 +1303,7 @@
         let pendingDiscards = []; // プレイヤーが捨てるカードを一時保存する変数
         let isAnimating = false; // アニメーション中の操作ロック用フラグ
         let isHintEnabled = true; // ヒント（ランプ）の有無
-        let selectedPlayerCharId = 1; // タイトルで選択したプレイヤーのキャラID
+        let selectedPlayerCharIds = []; // タイトルで選択したプレイヤーとCPUのキャラID (最大4つ)
         let playerChars = [];
         let bestPlayerHand = { score: -1, hand: [], round: 0, rolesText: '' };
 
@@ -1326,21 +1430,72 @@
             for (let i = 1; i <= 12; i++) {
                 const item = document.createElement('div');
                 item.className = 'char-select-item';
-                if (i === selectedPlayerCharId) item.classList.add('selected');
+                item.dataset.id = i;
 
                 // Qアイコンを表示
                 item.innerHTML = `
-                    ${getCharImgTag(i, 'Q', 'char-select-img')}
+                    <div style="position: relative;">
+                        ${getCharImgTag(i, 'Q', 'char-select-img')}
+                        <div class="char-select-badge"></div>
+                    </div>
                     <div class="char-select-name">${CHAR_NAMES[i]}</div>
                 `;
 
-                item.onclick = () => {
-                    selectedPlayerCharId = i;
-                    document.querySelectorAll('.char-select-item').forEach(el => el.classList.remove('selected'));
-                    item.classList.add('selected');
-                };
+                item.onclick = () => handleCharSelect(i, item);
                 grid.appendChild(item);
             }
+
+            // デフォルトでは誰も選択されていない状態にするため、以下の呼び出しを削除またはコメントアウト
+            // selectRandomChars();
+        }
+
+        function handleCharSelect(id, itemEl) {
+            const index = selectedPlayerCharIds.indexOf(id);
+            if (index > -1) {
+                // すでに選択されていれば解除（ただし最後の1人は解除できないようにするか、0になってもOKとするか。今回は0も許容で次タップ時に追加）
+                selectedPlayerCharIds.splice(index, 1);
+            } else {
+                // 未選択なら追加（追加順に 1P, CPU1, CPU2, CPU3 になる）。4人選ばれている場合は一番古いものを消す。
+                if (selectedPlayerCharIds.length >= 4) {
+                    selectedPlayerCharIds.shift();
+                }
+                selectedPlayerCharIds.push(id);
+            }
+            updateCharSelectUI();
+        }
+
+        function selectRandomChars() {
+            let nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].sort(() => Math.random() - 0.5);
+            selectedPlayerCharIds = nums.slice(0, 4);
+            updateCharSelectUI();
+        }
+
+        function updateCharSelectUI() {
+            document.querySelectorAll('.char-select-item').forEach(el => {
+                el.classList.remove('selected');
+                const badge = el.querySelector('.char-select-badge');
+                badge.innerText = '';
+
+                const id = parseInt(el.dataset.id);
+                const orderIndex = selectedPlayerCharIds.indexOf(id);
+
+                if (orderIndex > -1) {
+                    el.classList.add('selected');
+                    if (orderIndex === 0) {
+                        badge.innerText = '1P';
+                        badge.style.background = 'var(--accent)';
+                    } else {
+                        badge.innerText = `CPU${orderIndex}`;
+                        badge.style.background = '#f87171'; // CPUは赤っぽく
+                    }
+                }
+            });
+
+            // スタートボタンの有効/無効切り替え（4人揃わないと開始不可）
+            const startBtns = document.querySelectorAll('.start-btn');
+            startBtns.forEach(btn => {
+                btn.disabled = selectedPlayerCharIds.length < 4;
+            });
         }
 
         initTitleScreen(); // ゲーム読み込み時にキャラ選択画面を生成
@@ -1362,10 +1517,16 @@
             totalScores = [0, 0, 0, 0];
             round = 1;
 
-            // プレイヤー自身が選んだキャラと、残り枠からCPUを3人ランダムに選ぶ
-            let remainingChars = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].filter(id => id !== selectedPlayerCharId);
-            remainingChars.sort(() => Math.random() - 0.5);
-            playerChars = [selectedPlayerCharId, ...remainingChars.slice(0, 3)];
+            // もし何らかの理由で4人選ばれていなかったら、足りない分をランダムに追加
+            if (selectedPlayerCharIds.length < 4) {
+                let available = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].filter(id => !selectedPlayerCharIds.includes(id));
+                available.sort(() => Math.random() - 0.5);
+                while (selectedPlayerCharIds.length < 4 && available.length > 0) {
+                    selectedPlayerCharIds.push(available.pop());
+                }
+            }
+
+            playerChars = [...selectedPlayerCharIds];
 
             bestPlayerHand = { score: -1, hand: [], round: 0, rolesText: '' };
 
@@ -1681,14 +1842,28 @@
             const currentHand = [...c.hand];
             const counts = getRowCounts(currentHand);
 
-            // 現在の最大枚数の段とその枚数
-            let maxCount = 0;
+            // 場のオープンカードをカウントし、集めやすさを評価する
+            let fieldCounts = Array(10).fill(0);
+            field.forEach(card => {
+                if (card.open) getRows(card.val).forEach(r => fieldCounts[r]++);
+            });
+
+            let maxCount = Math.max(...counts.slice(1));
             let targetRow = 1;
+            let bestPotential = -1;
+
             for (let i = 1; i <= 9; i++) {
-                if (counts[i] > maxCount) {
-                    maxCount = counts[i];
+                // ポテンシャル: 手札の枚数 + (場の枚数 * 0.8) + (段の大きさ * 0.01 高得点優先)
+                let potential = counts[i] + (fieldCounts[i] * 0.8) + (i * 0.01);
+                if (potential > bestPotential) {
+                    bestPotential = potential;
                     targetRow = i;
                 }
+            }
+
+            // 既に3枚以上揃っている段がある場合、あえて崩さない (5カード狙いのキャラ以外)
+            if (maxCount >= 3 && counts[targetRow] < 3 && charId !== 3 && charId !== 12) {
+                targetRow = counts.indexOf(maxCount);
             }
 
             // 何枚捨てるか、どのカードを残すかをキャラクターごとに決定する
@@ -1722,14 +1897,30 @@
                     if (counts.filter(cnt => cnt >= 3).length >= 2) discardCount = 0;
                     break;
 
-                case 3: // 03ピヨン: 場のカードを見て5カードを積極的に作る
-                    // 常に最大派閥以外を全力で捨てる（最大3枚）
-                    currentHand.forEach((v, idx) => {
-                        if (getRows(v).includes(targetRow)) keepIndices.push(idx);
-                        else discardIndices.push(idx);
-                    });
-                    discardCount = Math.min(discardIndices.length, 3);
-                    if (maxCount === 5) discardCount = 0; // 5カード完成でパス
+                case 3: // 03ピヨン: 破天荒。常に9000点越え（Squares = 1, 25, 49, 64, 81）を目指す。ただし、手札と場に4枚以上見えている時限定。
+                    const squares = [1, 25, 49, 64, 81];
+                    let hasSquaresSq = currentHand.filter(v => squares.includes(v));
+                    let fieldSquares = field.filter(c => c.open && squares.includes(c.val));
+                    let totalVisibleSquares = hasSquaresSq.length + fieldSquares.length;
+
+                    if (hasSquaresSq.length === 5) {
+                        discardCount = 0; // 5枚揃ったらパス
+                    } else if (totalVisibleSquares >= 4) {
+                        // ロマンの可能性十分あり、全力で狙う
+                        currentHand.forEach((v, idx) => {
+                            if (squares.includes(v)) keepIndices.push(idx);
+                            else discardIndices.push(idx);
+                        });
+                        discardCount = Math.min(discardIndices.length, 3); // 限界の3枚まで捨てる
+                    } else {
+                        // 無理そうなら現状のベストポテンシャル（targetRow）に従って5カードを狙う
+                        currentHand.forEach((v, idx) => {
+                            if (getRows(v).includes(targetRow)) keepIndices.push(idx);
+                            else discardIndices.push(idx);
+                        });
+                        discardCount = Math.min(discardIndices.length, 3);
+                        if (maxCount === 5) discardCount = 0; // 普通の5カード完成でパス
+                    }
                     break;
 
                 case 4: // 04ノエル: 二つに3カードを作る
@@ -1795,23 +1986,13 @@
                     }
                     break;
 
-                case 8: // 08ワニタ: 確率を見極める (場のオープンカードを考慮)
+                case 8: // 08ワニタ: 確率を見極める (他プレイヤーの妨害も考慮しやすくなる)
                     if (maxCount >= 4) {
                         discardCount = 0;
                     } else {
-                        // 自分の手札 + 場のオープンカードで一番集まりそうな段を探す
-                        let maxPotential = 0;
-                        let bestTargetRow = 1;
-                        for (let i = 1; i <= 9; i++) {
-                            let fieldCount = field.filter(card => card.open && getRows(card.val).includes(i)).length;
-                            let potential = counts[i] + fieldCount;
-                            if (potential > maxPotential) {
-                                maxPotential = potential;
-                                bestTargetRow = i;
-                            }
-                        }
+                        // ワニタは全体のポテンシャル算定をそのまま信じる
                         currentHand.forEach((v, idx) => {
-                            if (getRows(v).includes(bestTargetRow)) keepIndices.push(idx);
+                            if (getRows(v).includes(targetRow)) keepIndices.push(idx);
                             else discardIndices.push(idx);
                         });
                         discardCount = Math.min(discardIndices.length, 2);
@@ -1830,24 +2011,27 @@
                     }
                     break;
 
-                case 10: // 10ミケン: 3カード以上は残す。1ターン目はハブ優先。
-                    if (maxCount >= 3) {
-                        currentHand.forEach((v, idx) => {
-                            if (getRows(v).includes(targetRow)) keepIndices.push(idx);
-                            else discardIndices.push(idx);
-                        });
-                        discardCount = Math.min(discardIndices.length, 1); // 揃っていても1枚チマチマ変える
-                    } else {
-                        // 揃っていない時はハブカード以外を全捨て（最大3枚）
-                        currentHand.forEach((v, idx) => {
-                            if (isHubCard(v)) keepIndices.push(idx);
-                            else discardIndices.push(idx);
-                        });
-                        discardCount = Math.min(discardIndices.length, 3);
+                case 10: // 10ミケン: 奇策。場のカードを使い揃えようとする。
+                    // 自分の手札を無視して、最も場に出ている段をターゲットに無理やり合わせに行く
+                    let bestFieldRow = 1;
+                    let maxFieldCount = -1;
+                    for (let i = 1; i <= 9; i++) {
+                        if (fieldCounts[i] > maxFieldCount) {
+                            maxFieldCount = fieldCounts[i];
+                            bestFieldRow = i;
+                        }
                     }
+                    currentHand.forEach((v, idx) => {
+                        if (getRows(v).includes(bestFieldRow)) keepIndices.push(idx);
+                        else discardIndices.push(idx);
+                    });
+                    discardCount = Math.min(discardIndices.length, 3);
+                    if (counts[bestFieldRow] >= 3) discardCount = 0; // すでに役があればパス考慮
+                    if (discardCount > 0 && maxCount >= 3) discardCount = 1; // 別の役ができているなら微調整
                     break;
 
-                case 11: // 11ハムコ: 1枚しかカードは捨てない。
+                case 11: // 11ハムコ: 我が道。自分と場のカードで組み合わせを考える。
+                    // ポテンシャル（自分+場）から導き出された targetRow に素直に従う。
                     if (maxCount >= 4) {
                         discardCount = 0;
                     } else {
@@ -1855,11 +2039,11 @@
                             if (getRows(v).includes(targetRow)) keepIndices.push(idx);
                             else discardIndices.push(idx);
                         });
-                        discardCount = discardIndices.length > 0 ? 1 : 0; // 最大でも1枚しか捨てない
+                        discardCount = Math.min(discardIndices.length, 2); // 独自のペースで2枚捨てる
                     }
                     break;
 
-                case 12: // 12プリス: とにかく5カードねらい
+                case 12: // 12プリス: ロマン。5カードが最優先。可能性があるなら狙う。
                     if (maxCount === 5) {
                         discardCount = 0;
                     } else {
@@ -1951,31 +2135,67 @@
                 let openIndices = availableIndices.filter(idx => field[idx].open);
                 let target = -1;
 
-                // オープンカードの中から自分が必要なカード（targetRowに含まれるか、ハブカードか）を優先して探す
+                // オープンカードの中から最も自分が欲しいカードを選ぶ
                 if (openIndices.length > 0) {
+                    let bestOpIdx = -1;
+                    let bestScore = -1;
+
                     for (let opIdx of openIndices) {
                         let cardVal = field[opIdx].val;
                         let cardRows = getRows(cardVal);
+                        let score = 0;
 
-                        // キャラ8(確率見極め)や3,12(5カード狙い)などは該当段を強く拾う
-                        if (charId === 8 || charId === 3 || charId === 12 || charId === 5) {
-                            if (cardRows.includes(targetRow)) { target = opIdx; break; }
-                        } else if (charId === 2 || charId === 10 || charId === 4) {
-                            // ハブ狙い
-                            if (isHubCard(cardVal) || cardRows.includes(targetRow)) { target = opIdx; break; }
-                        } else if (charId === 6) {
-                            // 3,6,9狙い
-                            if (cardRows.includes(3) || cardRows.includes(6) || cardRows.includes(9)) { target = opIdx; break; }
+                        // ターゲットの段のカードが最優先
+                        if (charId === 3) {
+                            const squares = [1, 25, 49, 64, 81];
+                            let hasSquaresSqCount = players[turn].hand.filter(v => squares.includes(v)).length;
+                            let fieldSquaresCount = field.filter(c => c.open && squares.includes(c.val)).length;
+                            // 手札+場で4枚以上あるなら強烈に狙う
+                            if (squares.includes(cardVal) && (hasSquaresSqCount + fieldSquaresCount) >= 4) {
+                                score += 200;
+                            } else {
+                                // 無理そうなら通常の段を狙うロジックにフォールバック
+                                if (cardRows.includes(targetRow)) score += 100;
+                                if (isHubCard(cardVal)) score += 30;
+                            }
+                        } else if (cardRows.includes(targetRow)) {
+                            score += 100;
+                            // ターゲットの段の中でも複数列に属するハブカードはさらに価値が高い
+                            if (isHubCard(cardVal)) score += 50;
                         } else {
-                            if (cardRows.includes(targetRow) && Math.random() > 0.3) { target = opIdx; break; }
+                            // キャラ特有のサブターゲット
+                            if ((charId === 2 || charId === 10 || charId === 4) && isHubCard(cardVal)) {
+                                score += 80;
+                            } else if (charId === 6 && (cardRows.includes(3) || cardRows.includes(6) || cardRows.includes(9))) {
+                                score += 80;
+                            }
+                            // 汎用的なブロック＆キープ戦略: ハブカードは他人に取らせない
+                            else if (isHubCard(cardVal)) {
+                                score += 30;
+                            }
                         }
+
+                        // 少しの揺らぎを入れて完全に同じ動きにならないようにする
+                        score += Math.random() * 10;
+
+                        if (score > bestScore && score > 20) { // 基準(20)を超えるものだけ拾う
+                            bestScore = score;
+                            bestOpIdx = opIdx;
+                        }
+                    }
+
+                    if (bestOpIdx !== -1) {
+                        target = bestOpIdx;
                     }
                 }
 
                 // 目当てのカードがなければ伏せカード（ランダム）から引く
                 if (target === -1) {
                     let closedIndices = availableIndices.filter(idx => !field[idx].open);
-                    if (closedIndices.length > 0) {
+                    if (charId === 7) {
+                        // 07アオン: 慎重。裏向いたカードはとらない
+                        target = openIndices.length > 0 ? openIndices[Math.floor(Math.random() * openIndices.length)] : availableIndices[Math.floor(Math.random() * availableIndices.length)];
+                    } else if (closedIndices.length > 0) {
                         target = closedIndices[Math.floor(Math.random() * closedIndices.length)];
                     } else {
                         target = availableIndices[Math.floor(Math.random() * availableIndices.length)];
